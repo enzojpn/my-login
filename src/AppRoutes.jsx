@@ -1,14 +1,21 @@
-import { BrowserRouter as Router, Route, Routes, Navigate,  } from "react-router-dom";
+import React, { useState } from "react";
+
+import { BrowserRouter as Router, Route, Routes, Navigate, } from "react-router-dom";
 import LoginPage from "./pages/LoginPages";
 import HomePage from "./pages/HomePages";
 
-const AppRoutes = () => {
+import { AuthProvider } from "./contexts/auth";
+
+const AppRoutes = () => { 
     return (
         <Router>
-            <Routes>
-                <Route exact path="/login" element={<LoginPage />} />
-                <Route exact path="/" element={<HomePage />} />
-            </Routes> 
+            <AuthProvider>
+                <Routes>
+                    <Route exact path="/login" element={<LoginPage />} />
+                    <Route exact path="/" element={<HomePage />} />
+                </Routes>
+            </AuthProvider>
+
         </Router>
 
     )
