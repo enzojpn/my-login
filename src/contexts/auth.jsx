@@ -13,8 +13,10 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const recoveredUser = localStorage.getItem('user');
-        if (recoveredUser) {
+        const token = localStorage.getItem('token');
+        if (recoveredUser && token) {
             setUser(JSON.parse(recoveredUser));
+            api.defaults.headers.Authorization = `Bearer ${token}`
         }
         SetLoading(false);
     }, [])
@@ -45,7 +47,7 @@ export const AuthProvider = ({ children }) => {
         console.log('loghout');
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        api.defaults.headers.Authorization= null;
+        api.defaults.headers.Authorization = null;
         setUser(null);
         navigate("/login");
     }
