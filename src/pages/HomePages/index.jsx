@@ -5,7 +5,7 @@ import { getUsers } from "../../services/api";
 
 
 const HomePage = () => {
-    const {  authenticate } = useContext(AuthContext);
+    const {logout,  authenticate } = useContext(AuthContext);
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -32,7 +32,7 @@ const HomePage = () => {
             <ul>
                 {
                     users.map((user)=>(
-                        <li key={id}>
+                        <li key={user._id}>
                             {user.id} - {user.email}
                         </li>
                     ))
